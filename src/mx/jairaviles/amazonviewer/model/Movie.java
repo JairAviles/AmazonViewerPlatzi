@@ -1,7 +1,6 @@
 package mx.jairaviles.amazonviewer.model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Movie extends Film implements IVisualized {
@@ -51,6 +50,21 @@ public class Movie extends Film implements IVisualized {
     public String toString() {
         return  "Title: " + getTitle() +
                 "\t Viewed:" + isViewed();
+    }
+
+    @Override
+    public void view() {
+        setViewed(true);
+        Date dateI = startToSee(new Date());
+
+        for (int i =0; i < 100000; i++) {
+            System.out.println("......");
+        }
+
+        stopToSee(dateI, new Date());
+        System.out.println();
+        System.out.println("Viste: " + toString());
+        System.out.println("Por: " + getTimeViewed() + " milisegundos");
     }
 
     public static ArrayList<Movie> makeMovieList() {

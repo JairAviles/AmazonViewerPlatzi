@@ -1,9 +1,6 @@
-package mx.jairaviles.amazonviewer;
+package mx.jairaviles.amazonviewer.main;
 
-import mx.jairaviles.amazonviewer.model.Book;
-import mx.jairaviles.amazonviewer.model.Chapter;
-import mx.jairaviles.amazonviewer.model.Movie;
-import mx.jairaviles.amazonviewer.model.Serie;
+import mx.jairaviles.amazonviewer.model.*;
 import mx.jairaviles.makereport.Report;
 
 import java.text.SimpleDateFormat;
@@ -14,6 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     private static ArrayList<Movie> movies = Movie.makeMovieList();
+    private static ArrayList<Serie> series = Serie.makeSeriesList();
 
     public static void main(String[] args) {
         showMenu();
@@ -25,8 +23,7 @@ public class Main {
 
             Scanner sc = new Scanner(System.in);
 
-            System.out.println("Welcome to Amazon Viewer!");
-            System.out.println("");
+            System.out.println("Welcome to Amazon Viewer!\n");
             System.out.println("Select the number of the desired option");
             System.out.println("1. Movies");
             System.out.println("2. Series");
@@ -86,23 +83,12 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             int response = Integer.valueOf(sc.nextLine());
 
-            if (response == 0) {
+            if (response == 0 || response > movies.size()) {
                 showMenu();
             } else {
 
                 Movie selectedMovie = movies.get(response - 1);
-                selectedMovie.setViewed(true);
-                Date startDate = selectedMovie.startToSee(new Date());
-
-                for (int i = 0; i < 1000000; i++) {
-                    System.out.println("......");
-                }
-
-                selectedMovie.stopToSee(startDate, new Date());
-
-                System.out.println();
-                System.out.println("Viste: " + selectedMovie);
-                System.out.println("Por: " + selectedMovie.getTimeViewed() + " milisegundos");
+                selectedMovie.view();
             }
 
 
@@ -111,7 +97,7 @@ public class Main {
 
     public static void showSeries() {
         int exit = 1;
-        ArrayList<Serie> series = Serie.makeSeriesList();
+
         do {
             System.out.println();
             System.out.println(":: SERIES ::");
@@ -129,10 +115,10 @@ public class Main {
                 showMenu();
             }
 
-                Serie selectedSerie = series.get(response - 1);
-                selectedSerie.setViewed(true);
-
+            if (response > 0) {
                 showChapters(series.get(response-1).getChapters());
+            }
+
         } while(exit != 0);
     }
 
@@ -152,19 +138,11 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             int response = Integer.valueOf(sc.nextLine());
 
-            if (response == 0) {
+            if (response == 0 || response > books.size()) {
                 showMenu();
             } else {
                 Book selectedBook = books.get(response - 1);
-                selectedBook.setRead(true);
-
-                for (int i = 0; i < 1000000; i++) {
-                    System.out.println("......");
-                }
-
-                System.out.println();
-                System.out.println("Leiste" + selectedBook);
-
+                selectedBook.view();
             }
 
 
@@ -205,19 +183,8 @@ public class Main {
             }
 
             Chapter chapterSelected = chaptersOfSerieSelected.get(response-1);
-            chapterSelected.setViewed(true);
-            Date dateI = chapterSelected.startToSee(new Date());
-
-            for (int i = 0; i < 100000; i++) {
-                System.out.println("..........");
-            }
-
-            //Termine de verla
-            chapterSelected.stopToSee(dateI, new Date());
-            System.out.println();
-            System.out.println("Viste: " + chapterSelected);
-            System.out.println("Por: " + chapterSelected.getTimeViewed() + " milisegundos");
-        }while(exit !=0);
+            chapterSelected.view();
+        } while(exit !=0);
     }
 
     public static void makeReport() {

@@ -11,7 +11,6 @@ public class Serie extends Film {
     public Serie(String title, String genre, String creator, int duration, int seasonQuantity) {
         super(title, genre, creator, duration);
         this.seasonQuantity = seasonQuantity;
-        this.chapters = Chapter.makeChapterList();
     }
 
     public int getId() {
@@ -48,10 +47,16 @@ public class Serie extends Film {
         ArrayList<Serie> series = new ArrayList<>();
 
         for (int i = 1; i <= 5; i++) {
-            series.add(new Serie("Serie" + i, "Genre" + i, "Creator" + i, 120 + i, i +1));
+            Serie serie = new Serie("Serie "+i, "genero "+i, "creador "+i, 1200, 5);
+            serie.setChapters(Chapter.makeChaptersList(serie));
+            series.add(serie);
         }
 
         return series;
     }
 
+    @Override
+    public void view() {
+
+    }
 }

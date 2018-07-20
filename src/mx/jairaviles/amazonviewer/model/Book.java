@@ -76,6 +76,19 @@ public class Book extends Publication implements IVisualized {
                 '}';
     }
 
+    public void view() {
+        setRead(true);
+        Date dateI = startToSee(new Date());
+
+        for (int i = 0; i < 1000000; i++) {
+            System.out.println("......");
+        }
+
+        stopToSee(dateI, new Date());
+        System.out.println();
+        System.out.println("Leiste" + toString());
+    }
+
     public static ArrayList<Book> makeBookList() {
         ArrayList<Book> books = new ArrayList<>();
 
