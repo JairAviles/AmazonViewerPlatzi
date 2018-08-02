@@ -2,6 +2,9 @@ package mx.jairaviles.amazonviewer.model;
 
 import java.util.Date;
 
+/**
+ * Hereda de {@link Publication}
+ * */
 public class Magazine extends Publication {
 
     private int id;

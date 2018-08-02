@@ -8,6 +8,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
+/**
+ * <h1>AmazonViewer</h1>
+ * AmazonViewer es un programa que permite visualizar
+ * peliculas, series con sus respectivos capitulos.
+ * Ademas de leer libros y revistas. Te permite generar
+ * reportes generales y del dia.
+ * <p>
+ *     Existen algunas reglas, como que todos los elementos
+ *     pueden ser visualizados.
+ * </p>
+ *
+ * @author Jair-MAC
+ * @version 1.1
+ * @since 2018
+ *
+ * */
+
 public class Main {
 
     private static ArrayList<Movie> movies = Movie.makeMovieList();

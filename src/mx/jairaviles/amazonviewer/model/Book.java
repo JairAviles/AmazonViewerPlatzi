@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Book extends Publication implements IVisualized {
+public class Book extends Publication implements IVisualizable {
 
     private int id;
     private String isbn;

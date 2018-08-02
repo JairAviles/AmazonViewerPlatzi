@@ -2,6 +2,10 @@ package mx.jairaviles.amazonviewer.model;
 
 import java.util.ArrayList;
 
+/**
+ * Hereda de {@link Movie}
+ * @see Film
+ */
 public class Chapter extends Movie {
 
     private int id;
@@ -66,7 +70,7 @@ public class Chapter extends Movie {
         }
 
         if (chapterViewedCounted == chapters.size()) {
-            getSerie().setViewed(true);
+            getSerie().view();
         }
     }
 }

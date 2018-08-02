@@ -3,7 +3,11 @@ package mx.jairaviles.amazonviewer.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Movie extends Film implements IVisualized {
+/**
+ * Hereda de {@link Film}
+ * Implementa de {@link IVisualizable}
+ * */
+public class Movie extends Film implements IVisualizable {
 
     private int id;
     private int timeViewed;
@@ -32,11 +36,17 @@ public class Movie extends Film implements IVisualized {
         this.timeViewed = timeViewed;
     }
 
+    /**
+     * {@inheritDoc}
+     * */
     @Override
     public Date startToSee(Date startDate) {
         return startDate;
     }
 
+    /**
+     * {@inheritDoc}
+     * */
     @Override
     public void stopToSee(Date startDate, Date endDate) {
         if (endDate.getTime() > startDate.getTime()) {
@@ -52,6 +62,9 @@ public class Movie extends Film implements IVisualized {
                 "\t Viewed:" + isViewed();
     }
 
+    /**
+     * {@inheritDoc}
+     * */
     @Override
     public void view() {
         setViewed(true);

@@ -1,5 +1,20 @@
 package mx.jairaviles.amazonviewer.model;
 
+
+/**
+ * <h1>Film</h1>
+ * Clase padre abstracta
+ * <p>
+ *     Esta clase es la base de la familia de Films.
+ *     Contiene el metodo abstracto
+ *     {@code view()} que es obligatorio implementar
+ * </p>
+ *
+ * @author Jair-MAC
+ * @version 1.1
+ * @since 2018
+ *
+ * */
 public abstract class Film {
 
     private String title;
@@ -74,5 +89,8 @@ public abstract class Film {
         this.viewed = viewed;
     }
 
+    /**
+     * {@code view()} abstracto obligatorio de implementar
+     * */
     public abstract void view();
 }
