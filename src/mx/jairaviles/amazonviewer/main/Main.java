@@ -1,6 +1,7 @@
 package mx.jairaviles.amazonviewer.main;
 
 import mx.jairaviles.amazonviewer.model.*;
+import mx.jairaviles.amazonviewer.util.AmazonUtil;
 import mx.jairaviles.makereport.Report;
 
 import java.text.SimpleDateFormat;
@@ -97,9 +98,9 @@ public class Main {
                 System.out.println(movie.toString());
             }
 
-            System.out.println("0. Regresar al Menu \n");
+            System.out.println("0. Back to Menu \n");
             Scanner sc = new Scanner(System.in);
-            int response = Integer.valueOf(sc.nextLine());
+            int response = AmazonUtil.validateUserResponseMenu(0, movies.size());
 
             if (response == 0 || response > movies.size()) {
                 showMenu();
@@ -125,7 +126,7 @@ public class Main {
                 System.out.println(serie.toString());
             }
 
-            System.out.println("0. Regresar al Menu \n");
+            System.out.println("0. Back to Menu \n");
             Scanner sc = new Scanner(System.in);
             int response = Integer.valueOf(sc.nextLine());
 
@@ -137,7 +138,7 @@ public class Main {
                 showChapters(series.get(response-1).getChapters());
             }
 
-        } while(exit != 0);
+        } while (exit != 0);
     }
 
     public static void showBooks() {
@@ -152,9 +153,8 @@ public class Main {
                 System.out.println(book.toString());
             }
 
-            System.out.println("0. Regresar al Menu \n");
-            Scanner sc = new Scanner(System.in);
-            int response = Integer.valueOf(sc.nextLine());
+            System.out.println("0. Back to Menu \n");
+            int response = AmazonUtil.validateUserResponseMenu(0, books.size());
 
             if (response == 0 || response > books.size()) {
                 showMenu();
@@ -162,8 +162,6 @@ public class Main {
                 Book selectedBook = books.get(response - 1);
                 selectedBook.view();
             }
-
-
         } while(exit != 0);
     }
 
@@ -189,7 +187,7 @@ public class Main {
                 System.out.println(i+1 + ". " + chaptersOfSerieSelected.get(i).getTitle() + " Visto: " + chaptersOfSerieSelected.get(i).isViewed());
             }
 
-            System.out.println("0. Regresar al Menu");
+            System.out.println("0. Back to Menu");
             System.out.println();
 
             //Leer Respuesta usuario

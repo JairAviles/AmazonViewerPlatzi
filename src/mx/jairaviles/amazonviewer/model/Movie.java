@@ -76,8 +76,8 @@ public class Movie extends Film implements IVisualizable {
 
         stopToSee(dateI, new Date());
         System.out.println();
-        System.out.println("Viste: " + toString());
-        System.out.println("Por: " + getTimeViewed() + " milisegundos");
+        System.out.println("Watched: " + toString());
+        System.out.println("For: " + getTimeViewed() + " miliseconds");
     }
 
     public static ArrayList<Movie> makeMovieList() {
