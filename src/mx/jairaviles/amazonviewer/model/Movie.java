@@ -1,7 +1,9 @@
 package mx.jairaviles.amazonviewer.model;
 
 import mx.jairaviles.amazonviewer.dao.MovieDAO;
+import mx.jairaviles.amazonviewer.util.AmazonUtil;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,11 +15,13 @@ public class Movie extends Film implements IVisualizable, MovieDAO {
 
     private int id;
     private int timeViewed;
+    private  String viewed_date;
 
     public Movie() {}
-    public Movie(String title, String genre, String creator, int duration, short year) {
+    public Movie(String title, String genre, String creator, int duration, short year, String viewed_date) {
         super(title, genre, creator, duration);
         setYear(year);
+        setViewed_date(viewed_date);
     }
 
     public void showData() {
@@ -43,6 +47,14 @@ public class Movie extends Film implements IVisualizable, MovieDAO {
         this.timeViewed = timeViewed;
     }
 
+    public String getViewed_date() {
+        return viewed_date;
+    }
+
+    public void setViewed_date(String viewed_date) {
+        this.viewed_date = viewed_date;
+    }
+
     /**
      * {@inheritDoc}
      * */
@@ -65,8 +77,14 @@ public class Movie extends Film implements IVisualizable, MovieDAO {
 
     @Override
     public String toString() {
-        return  "Title: " + getTitle() +
-                "\t Viewed:" + isViewed();
+        try {
+            return  "Title: " + getTitle() +
+                    "\t Viewed:" + isViewed() +
+                    "\t Date Viewed: " + AmazonUtil.formatDate(getViewed_date());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     /**

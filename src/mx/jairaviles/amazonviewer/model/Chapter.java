@@ -13,7 +13,7 @@ public class Chapter extends Movie {
     private Serie serie;
 
     public Chapter(String title, String genre, String creator, int duration, short year, int seasonNumber, Serie serie) {
-        super(title, genre, creator, duration, year);
+        super(title, genre, creator, duration, year, "");
         this.seasonNumber = seasonNumber;
         this.setSerie(serie);
     }
