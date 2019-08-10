@@ -2,7 +2,7 @@ package mx.jairaviles.amazonviewer.db;
 
 public class DataBase {
 
-    public static final String URL = "jdbc:mysql://localhost:3306/";
+    public static final String URL = "jdbc:mysql://localhost:8889/";
     public static final String DB_NAME = "amazonviewer";
     public static final String DB_USER = "amazonviewer";
     public static final String DB_PASSWORD = "amazonviewer";
@@ -18,10 +18,12 @@ public class DataBase {
     public static final String TUSER = "user";
     public static final String TUSER_ID = "id";
     public static final String TUSER_NAME = "name";
+    public static final int TUSER_IDUSUARIO = 1;
 
     public static final String TMATERIAL = "material";
     public static final String TMATERIAL_ID = "id";
     public static final String TMATERIAL_NAME = "name";
+    public static final int[] ID_TMATERIALS = { 1, 2, 3, 4, 5 };
 
     public static final String TVIEWED = "viewed";
     public static final String TVIEWED_ID = "id";
