@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -94,12 +95,10 @@ public class Main {
             System.out.println(":: MOVIES ::");
             System.out.println();
 
-            for (Movie movie : movies) {
-                System.out.println(movie.toString());
-            }
-
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            movies.forEach(m -> System.out.println(atomicInteger.getAndIncrement() + ".\t" + m.toString()));
             System.out.println("0. Back to Menu \n");
-            Scanner sc = new Scanner(System.in);
+
             int response = AmazonUtil.validateUserResponseMenu(0, movies.size());
 
             if (response == 0 || response > movies.size()) {
@@ -122,9 +121,8 @@ public class Main {
             System.out.println(":: SERIES ::");
             System.out.println();
 
-            for (Serie serie : series) {
-                System.out.println(serie.toString());
-            }
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            series.forEach(s -> System.out.println(atomicInteger.getAndIncrement() + ".\t" + s.toString()));
 
             System.out.println("0. Back to Menu \n");
             Scanner sc = new Scanner(System.in);
@@ -149,9 +147,8 @@ public class Main {
             System.out.println(":: BOOKS ::");
             System.out.println();
 
-            for (Book book : books) {
-                System.out.println(book.toString());
-            }
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            books.forEach(b -> System.out.println(atomicInteger.getAndIncrement() + ".\t" + b.toString()));
 
             System.out.println("0. Back to Menu \n");
             int response = AmazonUtil.validateUserResponseMenu(0, books.size());
@@ -181,7 +178,6 @@ public class Main {
             System.out.println();
             System.out.println(":: CHAPTERS ::");
             System.out.println();
-
 
             for (int i = 0; i < chaptersOfSerieSelected.size(); i++) { //1. Chapter 1
                 System.out.println(i+1 + ". " + chaptersOfSerieSelected.get(i).getTitle() + " Visto: " + chaptersOfSerieSelected.get(i).isViewed());
