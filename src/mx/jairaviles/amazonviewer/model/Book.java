@@ -143,10 +143,10 @@ public class Book extends Publication implements IVisualizable {
         }
 
         ArrayList<Page> pages = new ArrayList<>();
-        int pagina = 0;
+        int page = 0;
         for (int i = 0; i < 3; i++) {
-            pagina = i+1;
-            pages.add(new Book.Page(pagina, "Page content: " + pagina));
+            page = i+1;
+            pages.add(new Book.Page(page, "Page content: " + page));
         }
 
         for (int i = 1; i <= 5; i++) {

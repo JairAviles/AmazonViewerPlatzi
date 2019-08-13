@@ -150,7 +150,7 @@ public class Main {
             AtomicInteger atomicInteger = new AtomicInteger(1);
             books.forEach(b -> System.out.println(atomicInteger.getAndIncrement() + ".\t" + b.toString()));
 
-            System.out.println("0. Back to Menu \n");
+            System.out.println("0. Back to Menu");
             int response = AmazonUtil.validateUserResponseMenu(0, books.size());
 
             if (response == 0 || response > books.size()) {
@@ -163,11 +163,29 @@ public class Main {
     }
 
     public static void showMagazines() {
-        int exit = 0;
+        ArrayList<Magazine> magazines = Magazine.makeMagazineList();
+        int exit = 1;
         do {
             System.out.println();
             System.out.println(":: MAGAZINES ::");
             System.out.println();
+
+
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            magazines.forEach(m -> System.out.println(atomicInteger.getAndIncrement() + ".\t" + m.toString()));
+
+            System.out.println("0. Back to Menu");
+            System.out.println("Magazines size: " + magazines.size());
+
+            int response = AmazonUtil.validateUserResponseMenu(0, magazines.size());
+
+            if (response == 0 || response > magazines.size()) {
+                showMenu();
+            } else {
+                Magazine selectedMagazine = magazines.get(response - 1);
+                System.out.println(selectedMagazine.view());
+            }
+
         } while(exit != 0);
     }
 
