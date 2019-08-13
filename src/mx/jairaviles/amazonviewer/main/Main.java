@@ -32,6 +32,7 @@ public class Main {
 
     private static ArrayList<Movie> movies = Movie.makeMovieList();
     private static ArrayList<Serie> series = Serie.makeSeriesList();
+    private static ArrayList<Book> books = Book.makeBookList();
 
     public static void main(String[] args) {
         showMenu();
@@ -222,14 +223,23 @@ public class Main {
         report.setNameFile("Report");
         report.setExtension("txt");
         report.setTitle(":: MOVIES WATCHED ::\n");
-        String contentReport = "";
+        StringBuilder contentReport = new StringBuilder();
 
-        for (Movie movie : movies) {
-            if (movie.getIsViewed()) {
-                contentReport += movie.toString() + "\n";
-            }
-        }
-        report.setContent(contentReport);
+        movies.stream()
+                .filter(m -> m.getIsViewed())
+                .forEach(m -> contentReport.append(m.toString() + "\n"));
+
+        series.stream()
+                .forEach(s -> s.getChapters().stream()
+                    .filter(c -> c.getIsViewed())
+                        .forEach(c -> contentReport.append(c.toString() + "\n"))
+                );
+
+        books.stream()
+                .filter(b -> b.isRead())
+                .forEach(b -> contentReport.append(b.toString() + "\n"));
+
+        report.setContent(contentReport.toString());
         report.makeReport();
 
     }
@@ -241,14 +251,13 @@ public class Main {
         report.setNameFile("Report-" + dateString);
         report.setExtension("txt");
         report.setTitle(":: MOVIES WATCHED ::\n");
-        String contentReport = "";
+        StringBuilder contentReport = new StringBuilder();
 
-        for (Movie movie : movies) {
-            if (movie.getIsViewed()) {
-                contentReport += movie.toString() + "\n";
-            }
-        }
-        report.setContent(contentReport);
+        movies.stream()
+                .filter(m -> m.getIsViewed())
+                .forEach(m -> contentReport.append(m.toString() + "\n"));
+
+        report.setContent(contentReport.toString());
         report.makeReport();
 
     }
