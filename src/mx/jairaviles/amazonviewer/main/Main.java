@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 
 
 /**
@@ -205,7 +206,7 @@ public class Main {
             System.out.println("0. Back to Menu");
             System.out.println();
 
-            //Leer Respuesta usuario
+            // Leer Respuesta usuario
             Scanner sc = new Scanner(System.in);
             int response = Integer.valueOf(sc.nextLine());
 
@@ -229,11 +230,13 @@ public class Main {
                 .filter(m -> m.getIsViewed())
                 .forEach(m -> contentReport.append(m.toString() + "\n"));
 
+        Consumer<Serie> seriesEach = s -> {
+            ArrayList<Chapter> chapters = s.getChapters();
+            chapters.stream().filter(c -> c.getIsViewed())
+                .forEach(c -> contentReport.append(c.toString() + "\n"));
+        };
         series.stream()
-                .forEach(s -> s.getChapters().stream()
-                    .filter(c -> c.getIsViewed())
-                        .forEach(c -> contentReport.append(c.toString() + "\n"))
-                );
+                .forEach(seriesEach);
 
         books.stream()
                 .filter(b -> b.isRead())
